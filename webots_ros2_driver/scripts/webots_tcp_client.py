@@ -24,15 +24,7 @@ import time
 
 
 def get_host_ip():
-    try:
-        output = subprocess.run(['ip', 'route'], check=True, stdout=subprocess.PIPE, universal_newlines=True)
-        for line in output.stdout.split('\n'):
-            fields = line.split()
-            if fields and fields[0] == 'default':
-                return fields[2]
-        sys.exit('Unable to get host IP address.')
-    except subprocess.CalledProcessError:
-        sys.exit('Unable to get host IP address. \'ip route\' could not be executed.')
+    return "host.docker.internal"
 
 
 HOST = get_host_ip()  # Connect to host of the VM
